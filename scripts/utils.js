@@ -3,6 +3,16 @@ export function calcularLongestNaps(caso) {
     // Iterar sobre cada profesor para calcular el nap más largo
     for (let nombre in caso) {
         const profesor = caso[nombre];
+
+        // Verificar que el profesor tiene actividades
+        if (!Array.isArray(profesor.suActividad) || profesor.suActividad.length === 0) {
+            resultados.push({
+                nombre: profesor.nombre,
+                duracion: 1440, // Marca como libre todo el día si no tiene actividades
+                inicio: 0,
+            });
+            continue;
+        }
         // Ordenar las actividades del profesor y calcular el intervalo más largo (longest nap)
         profesor.suActividad.sort((a, b) => a.inicio - b.inicio);
 
