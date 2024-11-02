@@ -14,24 +14,22 @@ btnConsultar.addEventListener("click", desplegarReporte);
 function ingresarNuevoCaso() {
     let caso = document.getElementById("caso").value;
     caso = caso.replace(/\n/g, "").trim();
-
-    const [profesoresCadena, citasCadena] = caso.split("--");
+    const [profesoresCadena, actividadesCadena] = caso.split("--");
     const nombreProfesores = profesoresCadena.split (" ").map(nombre => nombre.replace(/['"]/g, "").trim());
-    const citasProfesores = citasCadena.split(";");
-
+    const actividadProfesores = actividadesCadena.split(";");
     const profesores = {};
 
     nombreProfesores.forEach(nombre =>{
         profesores[nombre] = new Profesor(nombre, []);
     });
 
-    citasProfesores.forEach(cita => {
+    actividadProfesores.forEach(actividad => {
         // Limpiar espacios adicionales en cada cita
-        const citaLimpia = cita.trim();
+        const actividadLimpia = actividad.trim();
         
         // Verificar si la cita es válida y tiene los elementos necesarios
-        if (citaLimpia) {
-            const [nombre, inicio, fin, tipo] = citaLimpia.split(" ");
+        if (actividadLimpia) {
+            const [nombre, inicio, fin, tipo] = actividadLimpia.split(" ");
             const profesorNombre = nombre.replace(/['"]/g, "").trim();
             if (profesores[profesorNombre]) {
                 const suActividad = new Actividad(parseInt(inicio), parseInt(fin), tipo);
