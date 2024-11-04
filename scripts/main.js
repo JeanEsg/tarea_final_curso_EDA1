@@ -44,14 +44,3 @@ function ingresarNuevoCaso() {
 function desplegarReporte(){
     salida.value = calcularLongestNaps(info);
 }
-
-// function listarProfesores(bd) {
-//     let lista;
-//     bd.forEach(profesores => {
-//         lista = profesores.toString();
-//     });
-//     return lista;
-// }
-
-
-
