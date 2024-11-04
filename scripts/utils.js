@@ -1,6 +1,6 @@
 export function calcularLongestNaps(caso) {
     const resultados = [];
-    // Iterar sobre cada profesor para calcular el nap más largo
+    // Iterar sobre cada profesor para calcular el nap mas largo
     for (let nombre in caso) {
         const profesor = caso[nombre];
 
@@ -8,17 +8,17 @@ export function calcularLongestNaps(caso) {
         if (!Array.isArray(profesor.suActividad) || profesor.suActividad.length === 0) {
             resultados.push({
                 nombre: profesor.nombre,
-                duracion: 1440, // Marca como libre todo el día si no tiene actividades
+                duracion: 1440, // Marca como libre todo el dia si no tiene actividades
                 inicio: 0,
             });
             continue;
         }
-        // Ordenar las actividades del profesor y calcular el intervalo más largo (longest nap)
+        // Ordenar las actividades del profesor y calcular el intervalo mas largo
         profesor.suActividad.sort((a, b) => a.inicio - b.inicio);
 
         let longestNap = 0;
         let inicioLongestNap = 0;
-        // Comienza desde el inicio del día
+        // Comienza desde el inicio del dia
         let tiempoLibreInicio = 0;
 
         profesor.suActividad.forEach(actividad => {
@@ -29,7 +29,7 @@ export function calcularLongestNaps(caso) {
             }
             tiempoLibreInicio = actividad.fin;
         });
-        // Revisar tiempo libre al final del día
+        // Revisar tiempo libre al final del dia
         const siestaFinal = 1440 - tiempoLibreInicio;
         if (siestaFinal > longestNap) {
             longestNap = siestaFinal;
@@ -42,9 +42,9 @@ export function calcularLongestNaps(caso) {
             inicio: inicioLongestNap,
         });
     }
-    // Ordenar por duración y nombre
+    // Ordenar por duracion y nombre
     resultados.sort((a, b) => b.duracion - a.duracion || a.nombre.localeCompare(b.nombre));
-    // Formatear la salida
+    // Organizar la salida
     return resultados
         .map(res => `${res.nombre} ${res.duracion} ${res.inicio}\n`)
         .join("\n");
